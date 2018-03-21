@@ -193,6 +193,9 @@ static NSString * const SWRecordingLProtocolHandledKey = @"SWRecordingLProtocolH
     if ([NSURLProtocol propertyForKey:SWRecordingLProtocolHandledKey inRequest:request] || !isHTTP) {
         return NO;
     }
+    if (![SWHttpTrafficRecorder sharedRecorder].isRecording) {
+        return NO;
+    }
     
     [self updateRecorderProgressDelegate:SWHTTPTrafficRecordingProgressReceived userInfo:@{SWHTTPTrafficRecordingProgressRequestKey: request}];
     
