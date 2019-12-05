@@ -379,7 +379,7 @@ static NSString * const SWRecordingLProtocolHandledKey = @"SWRecordingLProtocolH
 -(void)createFileAt:(NSString *)filePath usingData:(NSData *)data completionHandler:(void(^)(BOOL created))completionHandler{
     __block BOOL created = NO;
     NSBlockOperation* creationOp = [NSBlockOperation blockOperationWithBlock: ^{
-        created = [NSFileManager.defaultManager createFileAtPath:filePath contents:data attributes:[NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey]];
+        created = [NSFileManager.defaultManager createFileAtPath:filePath contents:data attributes:nil];
     }];
     creationOp.completionBlock = ^{
         completionHandler(created);
